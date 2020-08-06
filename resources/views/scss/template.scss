@@ -1,0 +1,8 @@
+$theme-colors: (
+    "primary": #5b7d5a,
+);
+.sidebar .nav-item .collapse .collapse-inner .collapse-item.active,
+.sidebar .nav-item .collapsing .collapse-inner .collapse-item.active{
+    color: #5b7d5a !important;
+}
+@import "~startbootstrap-sb-admin-2/scss/sb-admin-2";

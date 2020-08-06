@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="aprocont@aprocont.mysql.dbaas.com.br" uuid="995153fa-afd0-48bd-87bb-432704b193c4">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://aprocont.mysql.dbaas.com.br:3306/aprocont</jdbc-url>
+    </data-source>
+  </component>
+</project>
