@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class EntrarController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return view('entrar/index');
     }

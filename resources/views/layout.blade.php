@@ -1,33 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
+@include('header')
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Painel de Controle Aprocont</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="{{ asset('css/template_bootstrap.css') }}" rel="stylesheet">
-
-</head>
-
-<body id="page-top">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
         @auth()
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('painel.index') }}">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('img/sistema/logo-aprocont-64.png') }}" alt="Logo">
                 </div>
@@ -39,7 +17,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ route('painel.index') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Painel</span></a>
             </li>
@@ -52,6 +30,7 @@
                 Vizualizações
             </div>
 
+            @if(Auth::user()->tipo === "admin")
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfg" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -60,27 +39,25 @@
                 <div id="collapseConfg" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Cadastros</h6>
-                        <a class="collapse-item" href="buttons.html">Tipo Despesa</a>
-                        <a class="collapse-item" href="cards.html">Contas</a>
-                        <hr class="sidebar-divider">
-                        <h6 class="collapse-header">visualizações</h6>
-                        <a class="collapse-item" href="buttons.html">Tipo Despesa</a>
-                        <a class="collapse-item" href="cards.html">Contas</a>
-
+                        <a class="collapse-item" href="#">Tipo Despesa</a>
+                        <a class="collapse-item" href="#">Contas</a>
+                        <a class="collapse-item" href="{{ route('usuarios.index') }}">Usuários</a>
+                        <a class="collapse-item" href="{{ route('empresas.index') }}">Empresas</a>
                     </div>
                 </div>
             </li>
+            @endif
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <li class="nav-item ">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                     <i class="fas fa-file-alt"></i>
                     <span>Documentos</span>
                 </a>
                 <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Documetos:</h6>
-                        <a class="collapse-item active" href="buttons.html"><i class="fas fa-file-upload mr-2"></i>Enviar</a>
+                        <a class="collapse-item " href="buttons.html"><i class="fas fa-file-upload mr-2"></i>Enviar</a>
                         <a class="collapse-item " href="cards.html"><i class="fas fa-list mr-2"></i>Disponíveis</a>
                     </div>
                 </div>
@@ -278,28 +255,24 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ ucfirst(Auth::user()->name)}}</span>
                                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    Perfil
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                                    Configurações
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <button class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+                                    Sair
+                                </button>
                             </div>
                         </li>
 
@@ -308,15 +281,16 @@
                 <!-- End of Topbar -->
                 @endauth
 
-                @yield('conteudo')
+                <div class="container-fluid">
+                    @yield('conteudo')
+                </div>
+
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            @auth()
-            <footer class="sticky-footer bg-white">
-            @endauth
 
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Aprocont 2020</span>
@@ -324,58 +298,6 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-        </div>
-        <!-- End Content Wrapper -->
 
-    </div>
-    <!-- End Page Wraper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('js/jquery.easing.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('js/sb-admin-2.js') }}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{ asset('js/Chart.js') }}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{ asset('js/main.js') }}"></script>
-
-
-    <!-- Page level custom scripts -->
-{{--    <script src="{{ asset('js/chart-area-demo.js') }}"></script>--}}
-{{--    <script src="{{ asset('js/chart-pie-demo.js') }}"></script>--}}
-
-</body>
-
-</html>
+@include('rodape')
 

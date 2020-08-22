@@ -21,7 +21,7 @@
                                     </span>
 
                                 </div>
-                                <form class="user" method="post">
+                                <form class="user" method="post" action="{{ route('usuarios.store') }}">
                                     @csrf
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="name" aria-describedby="nome" name="name" placeholder="Nome" required>
@@ -49,7 +49,7 @@
                                     </div>
 
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        Registrar Usuário
+                                        Cadastrar
                                     </button>
                                 </form>
 

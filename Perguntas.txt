@@ -1,0 +1,1 @@
+O campo 'cód' no Cadastro de tipos de Despesas é um campo que vocês querem gerenciar, ou o sistema pode gerenciar?
