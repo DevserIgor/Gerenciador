@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CriacaoTabelaTipoDespesas extends Migration
+class createEmpresasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CriacaoTabelaTipoDespesas extends Migration
      */
     public function up()
     {
-        Schema::create('tipos_despesas', function (Blueprint $table) {
+        Schema::create('empresas', function (Blueprint $table) {
             $table->id();
-            $table->string('descricao');
-            $table->integer('cod_conta_contabil');
+            $table->bigInteger('nro_empresa')->unique();
+            $table->string('nome');
+            $table->char('cnpj', 18)->unique();
         });
     }
 
@@ -27,6 +28,6 @@ class CriacaoTabelaTipoDespesas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipos_despesas');
+        Schema::dropIfExists('empresas');
     }
 }

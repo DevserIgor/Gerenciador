@@ -15,9 +15,10 @@ class PermissionUser
      */
     public function handle($request, Closure $next)
     {
-        if(!(auth()->user()->tipo === 'user')){
-            return redirect()->route('painel.index');
+        if((auth()->user()->tipo === 'user') || (auth()->user()->tipo === 'admin') || (auth()->user()->tipo === 'fun') ){
+            return $next($request);
         }
-        return $next($request);
+        return redirect()->route('painel.index');
+
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class UserEditarRequest extends FormRequest
 {
@@ -21,13 +22,13 @@ class UserEditarRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
         return [
             'name' => 'required|min:3',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'tipo' => 'required',
-            'empresa_id' => 'required',
+            'empresa_id' => "required_if:tipo,user",
         ];
     }
 }

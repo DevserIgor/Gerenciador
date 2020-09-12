@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
+
 
 class EmpresaRequest extends FormRequest
 {
@@ -24,7 +24,7 @@ class EmpresaRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(Request $request)
+    public function rules()
     {
         return [
             "nro_empresa" => "required|unique:empresas",

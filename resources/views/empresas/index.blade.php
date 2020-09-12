@@ -6,6 +6,9 @@
 <!-- Page Heading -->
 
 <!-- DataTales Example -->
+@section('largura-table')
+    col-md-7
+@endsection
 @section('titulo-table')
     Empresas
 @endsection
@@ -36,11 +39,11 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu shadow" aria-labelledby="opcoesUsuario">
                             <button class="dropdown-item" onclick="preencheEditarEmpresa({{ $empresa->id }})">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fas fa-edit fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Editar
                             </button>
                             <button class="dropdown-item" onclick="confirmarExcluirEmpresa({{ $empresa->id }})">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fas fa-trash-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Excluir
                             </button>
                         </div>

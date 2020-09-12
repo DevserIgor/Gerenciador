@@ -2,6 +2,7 @@
     "/css/template_bootstrap.css": "/css/template_bootstrap.css",
     "/css/fontawesome.css": "/css/fontawesome.css",
     "/css/dataTables.bootstrap4.css": "/css/dataTables.bootstrap4.css",
+    "/css/datepicker.css": "/css/datepicker.css",
     "/img/undraw_posting_photo.svg": "/img/undraw_posting_photo.svg",
     "/js/jquery.js": "/js/jquery.js",
     "/js/bootstrap.js": "/js/bootstrap.js",
@@ -11,5 +12,8 @@
     "/js/chart-area-demo.js": "/js/chart-area-demo.js",
     "/js/chart-pie-demo.js": "/js/chart-pie-demo.js",
     "/js/jquery.dataTables.js": "/js/jquery.dataTables.js",
-    "/js/dataTables.bootstrap4.js": "/js/dataTables.bootstrap4.js"
+    "/js/dataTables.bootstrap4.js": "/js/dataTables.bootstrap4.js",
+    "/js/datepicker-locale.js": "/js/datepicker-locale.js",
+    "/js/datepicker.js": "/js/datepicker.js",
+    "/js/jquery-mask.js": "/js/jquery-mask.js"
 }

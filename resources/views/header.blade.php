@@ -22,8 +22,27 @@
         <link href="{{ asset('css/dataTables.bootstrap4.css') }}" rel="stylesheet">
     @endif
 
+    <link href="{{ asset('css/datepicker.css') }}" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
+    <div id="preloader">
+        <div id="preloader__status">
+
+            <!-- Animation -->
+            <div class="preloader__group">
+                <div class="preloader__big-square">
+                    <div class="preloader__square first"></div>
+                    <div class="preloader__square second"></div>
+                    <div class="preloader__square third"></div>
+                    <div class="preloader__square fourth"></div>
+                </div>
+                <div class="preloader__text">Carregando</div>
+            </div>
+            <!-- /Animation -->
+
+        </div>
+    </div>
     <!-- Page Wrapper -->
     <div id="wrapper">

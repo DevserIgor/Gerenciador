@@ -15,7 +15,7 @@ class PermissionFun
      */
     public function handle($request, Closure $next)
     {
-        if(!(auth()->user()->tipo === 'fun')){
+        if(!(auth()->user()->tipo === 'fun') || !(auth()->user()->tipo === 'admin') ){
             return redirect()->route('painel.index');
         }
         return $next($request);

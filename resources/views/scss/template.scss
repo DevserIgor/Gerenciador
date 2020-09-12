@@ -2,11 +2,13 @@ $theme-colors: (
     "primary": #5b7d5a,
     "info": #018989,
 );
+
 .sidebar .nav-item .collapse .collapse-inner .collapse-item.active,
 .sidebar .nav-item .collapsing .collapse-inner .collapse-item.active{
-    color: #5b7d5a !important;
+    color: var(--primary) !important;
 }
 html {
-    background: #f8f9fc;
+    background: var(--light);
 }
+@import "preLoader";
 @import "~startbootstrap-sb-admin-2/scss/sb-admin-2";

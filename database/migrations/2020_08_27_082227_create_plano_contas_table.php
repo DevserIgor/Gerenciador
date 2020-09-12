@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CriacaoTabelaEmpresas extends Migration
+class CreatePlanoContasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CriacaoTabelaEmpresas extends Migration
      */
     public function up()
     {
-        Schema::create('empresas', function (Blueprint $table) {
+        Schema::create('plano_contas', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('nro_empresa')->unique();
-            $table->string('nome');
-            $table->char('cnpj', 18)->unique();
+            $table->string('descricao');
+            $table->string('conta_contabil');
+            $table->unsignedBigInteger('empresa_id');
+
+            $table->foreign('empresa_id')->references('id')->on('empresas');
         });
     }
 
@@ -28,6 +30,6 @@ class CriacaoTabelaEmpresas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empresas');
+        Schema::dropIfExists('plano_contas');
     }
 }

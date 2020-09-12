@@ -60,4 +60,12 @@ class EmpresaController extends Controller
         $empresas = Empresa::query()->orderBy('nome')->get();
         return json_encode($empresas);
     }
+
+    public function trocaEmpresaAtual(Request $request)
+    {
+        $empresa_atual = $request->empresaId;
+
+        $request->session()->put('empresaAtual',$empresa_atual);
+        return response('teste',200);
+    }
 }

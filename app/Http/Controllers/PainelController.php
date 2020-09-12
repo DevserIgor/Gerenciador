@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\PermissionUserTrait;
+use App\Empresa;
+use App\Services\BuscadorEmpresasDisponiveisUsuario;
 use Illuminate\Http\Request;
 
 class PainelController extends Controller

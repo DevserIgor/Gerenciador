@@ -6,6 +6,9 @@
 <!-- Page Heading -->
 
 <!-- DataTales Example -->
+@section('largura-table')
+    col-md-10
+@endsection
 @section('titulo-table')
     Usuários
 @endsection
@@ -13,8 +16,8 @@
     <th scope="col" width="20%">Nome</th>
     <th scope="col" width="25%">Email</th>
     <th scope="col" width="10%">Tipo</th>
-    <th scope="col" width="25%">Empresa</th>
-    <th scope="col" width="20%" class="text-right">Opções</th>
+    <th scope="col" width="30%">Empresa</th>
+    <th scope="col" width="15%" class="text-right">Opções</th>
 @endsection
 @section('tfooter')
     <th>Nome</th>
@@ -41,11 +44,13 @@
                 <input type="hidden" nome="tipo" value="{{ $usuario->tipo }}" id="input-tipo-{{ $usuario->id }}">
             </td>
             <td>
-                @if($usuario->empresa)
+                @if($usuario->empresa && $usuario->tipo === 'user')
                     {{ $usuario->empresa->nome }}
                     <input type="hidden" nome="empresa" value="{{ $usuario->empresa->id }}" id="select-empresa-{{ $usuario->id }}">
+                @elseif ($usuario->tipo === 'fun')
+                    <a href="usuarios/{{ $usuario->id }}/empresas"><i class="fas fa-external-link-alt"></i>&nbsp;&nbsp;Ver empresas</a>
                 @else
-                    Todas
+                    Permissão Total
                 @endif
             </td>
             <td>
@@ -58,11 +63,12 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu shadow" aria-labelledby="opcoesEmpresa">
                             <button class="dropdown-item" onclick="preencheEditarUsuario({{ $usuario->id }})">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fas fa-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+
                                 Editar
                             </button>
                             <button class="dropdown-item" onclick="confirmarExcluirUsuario({{ $usuario->id }})">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fas fa-trash-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Excluir
                             </button>
                         </div>
@@ -260,7 +266,6 @@
             verificaTipoUser(tipo, 'editar')
 
             document.querySelector('#formModalEditar').setAttribute("action", `/usuarios/${usuarioId}`);
-            document.querySelector('#formModalEditar').setAttribute("action", `/usuarios/${usuarioId}`);
             // input-userId-empresa-editar
             $("#modalEditar").modal("show");
         }
@@ -335,7 +340,7 @@
             elementSelect.innerHTML = '';
             criaOption(`#empresa-${origem}`,'','Carregando...');
 
-            fetch('/empresas/retornaEmpresas', {
+            fetch('/empresas/retorna-empresas', {
                 method: 'GET'
             })
             .then(response => response.json())
@@ -395,7 +400,7 @@
                 retorno = false;
             }
 
-            if (empresaElement.value === ""){
+            if (empresaElement.value === "" && tipoElement.value === "user"){
                 empresaElement.classList.add('is-invalid');
                 retorno = false;
             }
@@ -410,7 +415,6 @@
 
         window.onload = function() {
             //adiciona submit no formulario de edicao para validações
-            // document.querySelector('#formModalEditar').setAttribute('return onsubmit', 'validaEditar();')
             document.querySelector('#btn-salvar-modal-adicionar').addEventListener('click', (event) =>{
                 event.preventDefault();
                 submit = validaform('adicionar');

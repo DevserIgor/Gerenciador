@@ -45,6 +45,16 @@
     <!-- Page level plugins -->
     <script src="{{ asset('js/main.js') }}"></script>
 
+    <!-- Date Picker plugins -->
+    <script src="{{ asset('js/datepicker.js') }}"></script>
+    <script src="{{ asset('js/datepicker-locale.js') }}"></script>
+
+    <!-- Jquery Mask plugins -->
+    <script src="{{ asset('js/jquery-mask.js') }}"></script>
+
+
+
+
     @if($tableLayout ?? '' )
         <!-- Page paginacao tables -->
         <script src="{{ asset('js/jquery.dataTables.js') }}"></script>
@@ -66,13 +76,54 @@
                         }
                     }
                 } );
-
-
-
             });
-        </script>
 
+
+        </script>
     @endif
+    <script>
+        $('.data').datepicker({
+            format: 'dd/mm/yyyy',
+            language: 'pt-BR',
+        })
+        $('.data').mask('00/00/0000');
+        $('.moeda').mask('#.##0,00', {reverse: true});
+
+        window.addEventListener('load', () =>{
+            loader(false);
+        })
+
+        //atualiza empresa atual
+        function trocaEmpresaAtual(empresaId){
+            loader(true);
+            let formData = new FormData();
+            const token = document.querySelector('input[name="_token"]  ').value;
+            //coloca empresa atual dentro do form temporario
+            formData.append('empresaId', empresaId);
+            //token laravel
+            formData.append('_token', token);
+            // loader(true);
+            fetch('/empresas/troca-empresa-atual', {
+                body: formData,
+                method: 'POST'
+            }).then((response)=>{
+                if (response.status === 200){
+                    document.location.reload();
+                }
+            });
+
+        }
+
+        //exibe/esconde loader
+        function loader(status){
+            if(status){
+                document.querySelector("#preloader").classList.remove('d-none');
+                return;
+            }
+            document.querySelector("#preloader").classList.add('d-none');
+        }
+    </script>
+
 </body>
 
 </html>

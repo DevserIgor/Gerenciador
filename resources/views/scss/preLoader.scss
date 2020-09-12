@@ -1,0 +1,204 @@
+
+.preload {
+    overflow: hidden;
+}
+.preload * {
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    animation: none !important;
+}
+#preloader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--light);
+    z-index: 9999;
+}
+
+#preloader__status {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+}
+
+/* Preloader Square */
+.preloader__group {
+    position: relative;
+    left: -50%;
+    display: inline-block;
+    line-height: 16px;
+    text-align: center;
+}
+
+.preloader__big-square {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    -webkit-transform-origin: bottom left;
+    transform-origin: bottom left;
+    -webkit-animation: big-square_shrink 1s linear infinite !important;
+    -moz-animation: big-square_shrink 1s linear infinite !important;
+    animation: big-square_shrink 1s linear infinite !important;
+}
+
+.preloader__square {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+}
+
+.preloader__square.first {
+    left: 0px;
+    top: 20px;
+}
+
+.preloader__square.second {
+    left: 20px;
+    top: 20px;
+    -webkit-animation: drop2 1s linear infinite !important;
+    -moz-animation: drop2 1s linear infinite !important;
+    animation: drop2 1s linear infinite !important;
+}
+
+.preloader__square.third {
+    left: 0px;
+    top: 0px;
+    -webkit-animation: drop3 1s linear infinite !important;
+    -moz-animation: drop3 1s linear infinite !important;
+    animation: drop3 1s linear infinite !important;
+}
+
+.preloader__square.fourth {
+    left: 20px;
+    top: 0px;
+    -webkit-animation: drop4 1s linear infinite !important;
+    -moz-animation: drop4 1s linear infinite !important;
+    animation: drop4 1s linear infinite !important;
+}
+
+.preloader__text {
+    font-family: 'Quicksand', sans-serif;
+    color: #222;
+    display: block;
+    margin: 10px 0;
+}
+
+/* Animation */
+@-webkit-keyframes big-square_shrink {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    90% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(.5);
+        transform: scale(.5);
+    }
+}
+
+@keyframes big-square_shrink {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    90% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(.5);
+        transform: scale(.5);
+    }
+}
+@-webkit-keyframes drop2 {
+    0% {
+        -webkit-transform: translateY(-50px);
+        transform: translateY(-50px);
+    }
+    25% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+    100% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+@keyframes drop2 {
+    0% {
+        -webkit-transform: translateY(-50px);
+        transform: translateY(-50px);
+    }
+    25% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+    100% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+@-webkit-keyframes drop3 {
+    0% {
+        -webkit-transform: translateY(-50px);
+        transform: translateY(-50px);
+    }
+    50% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+    100% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+@keyframes drop3 {
+    0% {
+        -webkit-transform: translateY(-50px);
+        transform: translateY(-50px);
+    }
+    50% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+    100% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+@-webkit-keyframes drop4 {
+    0% {
+        -webkit-transform: translateY(-50px);
+        transform: translateY(-50px);
+    }
+    75% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+    100% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+@keyframes drop4 {
+    0% {
+        -webkit-transform: translateY(-50px);
+        transform: translateY(-50px);
+    }
+    75% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+    100% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Empresa;
 use App\Http\Requests\UserEditarRequest;
 use App\Http\Requests\UserRequest;
 use App\User;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 class UsuarioController extends Controller
 {
     private $tableLayout;
+
     public function __construct()
     {
         $this->tableLayout = true;
@@ -23,7 +25,7 @@ class UsuarioController extends Controller
 //        $usuarios = User::query()->orderBy('name')->with('empresa')->get();
         $usuarios = User::query()->orderBy('name')->get();
         $mensagemAlerta = $request->session()->get("mensagemAlerta");
-        return view("usuarios.index", compact('tableLayout', 'usuarios', 'mensagemAlerta'));
+        return view("usuarios.index", compact('tableLayout','usuarios','mensagemAlerta'));
     }
 
     public function store( UserRequest $request )
@@ -55,6 +57,32 @@ class UsuarioController extends Controller
         return redirect()->route('usuarios.index');
 
     }
+
+    public function usuariosEmpresasIndex(Request $request, int $user)
+    {
+        $tableLayout = $this->tableLayout;
+        $usuario = User::find($user);
+        $empresas = Empresa::all();
+        $mensagemAlerta = $request->session()->get("mensagemAlerta");
+        return view("usuarios.empresas",
+            compact('tableLayout','empresas','usuario','mensagemAlerta'));
+    }
+
+    public function usuariosEmpresasUpdate(Request $request, int $usuario)
+    {
+        $data = $request->empresas;
+        $user = User::find($usuario);
+
+        $sync = $user->empresas()->sync($data);
+
+        if($sync){
+            $request->session()->flash('mensagemAlerta', "Usuário vinculado ás empresas com sucesso!" );
+        }
+
+        return redirect("usuarios/$usuario/empresas");
+    }
+
+
 
     public function destroy(int $id, Request $request)
     {
