@@ -56,6 +56,23 @@ Route::get('/sessoes', function (Session $sessoes){
 
    dd(session()->all());
 });
+
+Route::get('/email', function (){
+    //return new \App\Mail\DownloadDocumento();
+
+
+    $user = (object)[
+      "email" => "iprates22@gmail.com",
+      "name" => "Igor Silva"
+    ];
+
+    $email = new  \App\Mail\DownloadDocumento($user);
+
+
+    \Illuminate\Support\Facades\Mail::send($email);
+    return "email eniado";
+
+});
 Route::get('/sessoes-zera-intervalo', function (Session $sessoes){
     session()->forget('tableDataInicio');
     session()->forget('tableDataFim');
